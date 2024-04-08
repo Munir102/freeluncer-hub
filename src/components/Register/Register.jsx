@@ -16,8 +16,21 @@ const Register = () => {
         setTermsChecked(!termsChecked);
     };
 
+    const handleRegisterForm = e =>{
+        e.preventDefault();
+        // console.log("click done");
+        const fName = e.target.firstName.value;
+        const lName = e.target.lastName.value;
+        const email = e.target.userEmail.value;
+        const uType = e.target.userType.value;
+        const password = e.target.password.value;
+        const termsConditions = e.target.termsCheckbox.value;
+
+        console.log(fName, lName, email, uType, password, termsConditions);
+    }
+
     return (
-        <div className="mx-auto w-[40%] flex flex-col  border border-neutral-100 p-6 shadow-md mb-12 gap-2 rounded-md">
+        <div className="mx-auto w-[40%] flex flex-col  border border-neutral-100 p-6 shadow-md mb-16 gap-2 rounded-md">
             <div className="flex flex-col items-center text-center gap-6">
                 <h1 className="text-black_bg text-3xl font-bold">Create an account</h1>
                 <Link to="/"><a className="flex items-center justify-center text-center border border-neutral-300 py-2 px-4 gap-4 rounded-md">
@@ -29,7 +42,7 @@ const Register = () => {
 
             {/* form start */}
 
-            <form className="flex flex-col gap-4 mt-2">
+            <form onSubmit={handleRegisterForm} className="flex flex-col gap-4 mt-2">
                 <div className="flex gap-4">
                     <div className="flex flex-col gap-2 flex-grow">
                         <label htmlFor="firstName">First Name</label>
