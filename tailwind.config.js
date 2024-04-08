@@ -7,6 +7,9 @@ export default {
   theme: {
     colors: {
       'primary_color': '#f97316',
+      'white_color': '#fffff',
+      'black_bg': '#0f172a',
+      'color_grey': '#9ca3af',
     },
   },
   plugins: [require("daisyui")],
