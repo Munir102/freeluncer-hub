@@ -32,7 +32,7 @@ const Register = () => {
     return (
         <div className="mx-auto w-[40%] flex flex-col  border border-neutral-100 p-6 shadow-md mb-16 gap-2 rounded-md">
             <div className="flex flex-col items-center text-center gap-6">
-                <h1 className="text-black_bg text-3xl font-bold">Create an account</h1>
+                <h1 className="text-black_bg text-2xl font-bold">Create an account</h1>
                 <Link to="/"><a className="flex items-center justify-center text-center border border-neutral-300 py-2 px-4 gap-4 rounded-md">
                     <span className="text-3xl"><FcGoogle /></span>
                     <span>Register with Google</span>
@@ -55,13 +55,12 @@ const Register = () => {
                 </div>
                 <label htmlFor="userEmail">Email address</label>
                 <input type="email" name="userEmail" id="userEmail" className="p-2 border border-neutral-300 rounded-md"/>
-                <label htmlFor="userType">Client or Service Provider?</label>
+                <label htmlFor="userType">Registration as?</label>
                 <select id="userType" name="userType" className="p-2 border border-neutral-300 rounded-md">
                     <option value="" selected disabled >Select one</option>
-                    <option value="client" >Client</option>
+                    <option value="contractor" >Contractor</option>
                     <option value="serviceProvider">Service Provider</option>
                 </select>
-
 
                 <label htmlFor="password">Password</label>
                 <div className="flex items-center">
