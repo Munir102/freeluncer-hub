@@ -31,8 +31,14 @@ const handleRegisterForm = async (e) => {
         const email = e.target.userEmail.value;
         const password = e.target.password.value;
 
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
         if (password.length < 6) {
             toast.error('Password should be 6 characters or longer.');
+            return;
+        }
+        else if (!passwordRegex.test(password)) {
+            toast.error('Password should contain at least one letter, one digit, and be at least 8 characters long.');
             return;
         }
 
@@ -82,7 +88,7 @@ const handleRegisterForm = async (e) => {
                     </div>
                 </div>
                 <label htmlFor="userEmail">Email address</label>
-                <input type="email" name="userEmail" id="userEmail" className="p-2 border border-neutral-300 rounded-md"/>
+                <input type="email" name="userEmail" id="userEmail" className="p-2 border border-neutral-300 rounded-md" required/>
                 <label htmlFor="password">Password</label>
                 <div className="flex items-center">
                     <input
@@ -90,6 +96,7 @@ const handleRegisterForm = async (e) => {
                         name="password"
                         id="password"
                         className="p-2 border border-neutral-300 rounded-md flex-1"
+                        required
                     />
                     <button
                         type="button"
