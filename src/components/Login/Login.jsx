@@ -1,11 +1,18 @@
-import { useState } from "react";
+import { sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
+import { useState, useRef } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import auth from "../../Firebase/Firebase.config";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
+    const [registerError, setRegisterError] = useState('');
+    const [success, setSuccess] = useState('');
+    const emailRef = useRef(null);
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -15,15 +22,58 @@ const Login = () => {
         setRememberMe(!rememberMe);
     };
 
-    const handleRegisterForm = e =>{
+    const handleLogIn = e => {
         e.preventDefault();
-        // console.log("click done");
         const email = e.target.userEmail.value;
         const password = e.target.password.value;
-        const rememberMe = e.target.rememberMe.value;
 
-        console.log(email, password, rememberMe);
+        signInWithEmailAndPassword(auth, email, password)
+            .then(result => {
+                console.log(result.user);
+                toast.success('Login successful');
+                setSuccess('Login successful');
+            })
+            .catch(error => {
+                console.error(error);
+                let errorMessage = "An error occurred while logging in. Please try again.";
+                if (error.code === "auth/user-not-found") {
+                    errorMessage = "User not found. Please check your email and try again.";
+                } else if (error.code === "auth/wrong-password") {
+                    errorMessage = "Incorrect password. Please try again.";
+                }
+                setRegisterError(errorMessage);
+                toast.error(errorMessage);
+            });
     }
+
+    const handleForgetPassword = () => {
+        const email = emailRef.current.value;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+        if (!email) {
+
+            toast.error('Email is empty.');
+            return;
+
+        } else if (!emailRegex.test(email)) {
+
+            toast.error('Your email is invalid. Please provide valid email.');
+            return;
+
+        }
+        console.log('Sent reset email to:', email);
+    
+        sendPasswordResetEmail(auth, email)
+        .then(() =>{
+
+            toast.success('Please check your email.');
+        })
+        .catch(error =>{
+            toast.error('An error occurred while sending the reset email.', error);
+
+        })
+    };
+
 
     return (
         <div className="mx-auto w-[40%] flex flex-col  border border-neutral-100 p-6 shadow-md mb-16 gap-2 rounded-md">
@@ -39,9 +89,15 @@ const Login = () => {
             </div>
 
             {/* form start */}
-            <form onSubmit={handleRegisterForm} className="flex flex-col gap-4 mt-2">
+            <form onSubmit={handleLogIn} className="flex flex-col gap-4 mt-2">
                 <label htmlFor="userEmail">Email address</label>
-                <input type="email" name="userEmail" id="userEmail" className="p-2 border border-neutral-300 rounded-md"/>
+                <input 
+                    type="email" 
+                    name="userEmail" 
+                    ref={emailRef}
+                    id="userEmail" 
+                    className="p-2 border border-neutral-300 rounded-md"
+                />
 
                 <label htmlFor="password">Password</label>
                 <div className="flex items-center">
@@ -73,7 +129,7 @@ const Login = () => {
                         <label htmlFor="rememberMe">Remember Me</label>
                     </div>
 
-                    <Link to="/forgot-password" className="text-blue-500 font-semibold hover:underline">Forgot Password?</Link>
+                    <Link onClick={handleForgetPassword} to="" className="text-blue-500 font-semibold hover:underline">Forgot Password?</Link>
                 </div>
 
                 <button 
@@ -83,6 +139,8 @@ const Login = () => {
                     Log In
                 </button>
             </form>
+
+            <ToastContainer />
 
             <p className="mt-2">Don't have an account? <span className="font-semibold"><Link to="/register">Register here</Link></span></p>
         </div>

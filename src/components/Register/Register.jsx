@@ -1,29 +1,29 @@
 
-import { useState } from "react";
-import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
-import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import auth from "../../Firebase/Firebase.config";
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+    import { useState } from "react";
+    import { FcGoogle } from "react-icons/fc";
+    import { Link } from "react-router-dom";
+    import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+    import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+    import auth from "../../Firebase/Firebase.config";
+    import { toast, ToastContainer } from 'react-toastify';
+    import 'react-toastify/dist/ReactToastify.css';
 
-const Register = () => {
+    const Register = () => {
 
     const [showPassword, setShowPassword] = useState(false);
-const [termsChecked, setTermsChecked] = useState(false);
-const [registerError, setRegisterError] = useState('');
-const [success, setSuccess] = useState('')
+    const [termsChecked, setTermsChecked] = useState(false);
+    const [registerError, setRegisterError] = useState('');
+    const [success, setSuccess] = useState('')
 
-const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-};
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
-const handleCheckboxChange = () => {
-    setTermsChecked(!termsChecked);
-};
+    const handleCheckboxChange = () => {
+        setTermsChecked(!termsChecked);
+    };
 
-const handleRegisterForm = async (e) => {
+    const handleRegisterForm = async (e) => {
     e.preventDefault();
 
         const fName = e.target.firstName.value;
@@ -31,16 +31,17 @@ const handleRegisterForm = async (e) => {
         const email = e.target.userEmail.value;
         const password = e.target.password.value;
 
-        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        // const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        // const passwordRegex = /.{8,}/;
 
         if (password.length < 6) {
             toast.error('Password should be 6 characters or longer.');
             return;
         }
-        else if (!passwordRegex.test(password)) {
-            toast.error('Password should contain at least one letter, one digit, and be at least 8 characters long.');
-            return;
-        }
+        // else if (!passwordRegex.test(password)) {
+        //     toast.error('Password should contain at least one letter, one digit, and be at least 8 characters long.');
+        //     return;
+        // }
 
         try {
             // Create the user with email and password
