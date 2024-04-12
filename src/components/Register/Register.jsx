@@ -3,7 +3,7 @@
     import { FcGoogle } from "react-icons/fc";
     import { Link } from "react-router-dom";
     import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-    import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+    import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
     import auth from "../../Firebase/Firebase.config";
     import { toast, ToastContainer } from 'react-toastify';
     import 'react-toastify/dist/ReactToastify.css';
@@ -24,45 +24,49 @@
     };
 
     const handleRegisterForm = async (e) => {
-    e.preventDefault();
-
+        e.preventDefault();
+    
         const fName = e.target.firstName.value;
         const lName = e.target.lastName.value;
         const email = e.target.userEmail.value;
         const password = e.target.password.value;
-
-        // const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-        // const passwordRegex = /.{8,}/;
-
+    
         if (password.length < 6) {
             toast.error('Password should be 6 characters or longer.');
             return;
         }
-        // else if (!passwordRegex.test(password)) {
-        //     toast.error('Password should contain at least one letter, one digit, and be at least 8 characters long.');
-        //     return;
-        // }
-
+    
         try {
             // Create the user with email and password
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
-
+    
             setRegisterError('');
             setSuccess('');
-
+    
             await updateProfile(user, {
                 displayName: `${fName} ${lName}`
             });
-
-            toast.success('User created successfully');
+    
+            // toast.success('User created successfully');
             console.log("User created:", user);
+            
+            // verify email address
+            sendEmailVerification(user)
+                .then(() =>{
+                    toast.success('Please check your email and verify your account.');
+                })
+                .catch(error => {
+                    console.error("Email verification error:", error);
+                    toast.error('An error occurred while sending the verification email.');
+                });
+    
         } catch (error) {
-            // setRegisterError(error.message);
             console.error(error);
             toast.error(error.message);
         }
     };
+    
 
 
     return (

@@ -26,12 +26,18 @@ const Login = () => {
         e.preventDefault();
         const email = e.target.userEmail.value;
         const password = e.target.password.value;
-
+    
         signInWithEmailAndPassword(auth, email, password)
             .then(result => {
                 console.log(result.user);
-                toast.success('Login successful');
-                setSuccess('Login successful');
+                
+                if(result.user.emailVerified){
+                    setSuccess('Login successfully.');
+                    toast.success('Login successfully.');
+                } else {
+                    toast.error('Please check your email and verify your account.');
+                }
+    
             })
             .catch(error => {
                 console.error(error);
@@ -45,6 +51,7 @@ const Login = () => {
                 toast.error(errorMessage);
             });
     }
+    
 
     const handleForgetPassword = () => {
         const email = emailRef.current.value;
