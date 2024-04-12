@@ -44,10 +44,17 @@
             setRegisterError('');
             setSuccess('');
     
-            await updateProfile(user, {
+            updateProfile(user, {
                 displayName: `${fName} ${lName}`
+            })
+            .then(() => {
+                console.log('Profile updated successfully.');
+            })
+            .catch(error => {
+                console.error('Error updating profile:', error);
+                toast.error('An error occurred while updating profile.');
             });
-    
+
             // toast.success('User created successfully');
             console.log("User created:", user);
             
