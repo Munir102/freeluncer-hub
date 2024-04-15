@@ -1,11 +1,13 @@
-import { sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
+
+import { getAuth, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useState, useRef } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
-import auth from "../../Firebase/Firebase.config";
+import auth from "../../Firebase/Firebase.config"; // Import Firebase configuration
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { GoogleAuthProvider } from "firebase/auth"; // Import GoogleAuthProvider
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -13,6 +15,22 @@ const Login = () => {
     const [registerError, setRegisterError] = useState('');
     const [success, setSuccess] = useState('');
     const emailRef = useRef(null);
+
+    const [user, setUser] = useState(null);
+
+    // Initialize GoogleAuthProvider
+    const provider = new GoogleAuthProvider();
+
+    const handleGoogleSignIn = () => {
+        signInWithPopup(auth, provider)
+        .then((result) => {
+            const loggedInUser = result.user;
+            // console.log(loggedInUser);
+            setUser(loggedInUser);
+        }).catch((error) => {
+            console.log('error', error.message);
+        });
+    }
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -41,7 +59,7 @@ const Login = () => {
             })
             .catch(error => {
                 console.error(error);
-                let errorMessage = "An error occurred while logging in. Please try again.";
+                let errorMessage = "Please enter email and password while login.";
                 if (error.code === "auth/user-not-found") {
                     errorMessage = "User not found. Please check your email and try again.";
                 } else if (error.code === "auth/wrong-password") {
@@ -51,7 +69,6 @@ const Login = () => {
                 toast.error(errorMessage);
             });
     }
-    
 
     const handleForgetPassword = () => {
         const email = emailRef.current.value;
@@ -86,7 +103,7 @@ const Login = () => {
         <div className="mx-auto w-[40%] flex flex-col  border border-neutral-100 p-6 shadow-md mb-16 gap-2 rounded-md">
             <div className="flex flex-col items-center text-center gap-6">
                 <h1 className="text-black_bg text-2xl font-bold">Sign in to your account</h1>
-                <Link to="/">
+                <Link to="" onClick={handleGoogleSignIn}>
                     <a className="flex items-center justify-center text-center border border-neutral-300 py-2 px-4 gap-4 rounded-md">
                         <span className="text-3xl"><FcGoogle /></span>
                         <span>Continue with Google</span>

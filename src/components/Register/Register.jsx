@@ -47,6 +47,7 @@
             updateProfile(user, {
                 displayName: `${fName} ${lName}`
             })
+
             .then(() => {
                 console.log('Profile updated successfully.');
             })
@@ -89,7 +90,7 @@
 
             {/* Form start */}
             <form onSubmit={handleRegisterForm} className="flex flex-col gap-4 mt-2">
-                <div className="flex gap-4">
+                <div className="flex xl:flex-row flex-col gap-4">
                     <div className="flex flex-col gap-2 flex-grow">
                         <label htmlFor="firstName">First Name</label>
                         <input type="text" name="firstName" id="firstName" className="p-2 border border-neutral-300 rounded-md"/>
