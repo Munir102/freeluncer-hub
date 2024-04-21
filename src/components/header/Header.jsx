@@ -5,6 +5,7 @@ import {AuthContext} from "../../providers/AuthProvider";
 const Header = () => {
 
     const { user, logOut } = useContext(AuthContext);
+    console.log(user);
 
     const handleLogout = () =>{
         logOut()
@@ -66,7 +67,7 @@ const Header = () => {
 
                 {user && (
                     <div className="flex md:gap-4 gap-2">
-                        <p>{user.email}</p>
+                        <p>{user.displayName}</p>
                         <button
                             onClick={handleLogout} 
                             className="btn btn-sm btn-outline border-primary_color text-primary_color hover:bg-primary_color hover:text-white hover:border-primary_color md:px-6 lg:text-[14px] text-sm rounded-md"

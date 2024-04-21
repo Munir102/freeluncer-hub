@@ -60,8 +60,9 @@ const Register = () => {
             console.log("User created:", user);
         } catch (error) {
             console.error(error);
-            setRegisterError(error.message);
-            toast.error(error.message);
+            // setRegisterError(error.message);
+            // toast.error(error.message);
+            toast.error('Already used this email.');
         }
     };
 
