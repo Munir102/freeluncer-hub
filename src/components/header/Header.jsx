@@ -1,6 +1,16 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import {AuthContext} from "../../providers/AuthProvider";
 
 const Header = () => {
+
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogout = () =>{
+        logOut()
+        .then(() => console.log('User login successfully'))
+        .catch(error=> console.error(error))
+    }
 
     const NavLinks = (
         <>
@@ -13,7 +23,7 @@ const Header = () => {
     );
 
     return (
-        <div className="navbar bg-base-100 font_ws md:my-8 my-4 md:p-0 p-2 2xl:px-0 lg:px-10 pr-0 sm:pr-3">
+        <div className="navbar bg-base-100 md:p-0 p-4 md:my-4 my-2">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -41,7 +51,7 @@ const Header = () => {
                         </div>
                     </ul>
                 </div>
-                <Link to="/" className="md:text-[28px] text-xl font-bold text-title">Freeluncer <span className="text-primary_color">Hub</span></Link>
+                <Link to="/" className="md:text-2xl text-base font-bold">Freeluncer <span className="text-primary_color">Hub</span></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -50,10 +60,42 @@ const Header = () => {
                     </div>
                 </ul>
             </div>
-            <div className="navbar-end flex gap-4">
-                <NavLink to="/login" className="btn btn-outline border-primary_color text-primary_color hover:bg-primary_color hover:text-white hover:border-primary_color px-6 rounded-md">Log In</NavLink>
-                <NavLink to="/register" className="btn bg-primary_color text-neutral-50 border-primary_color hover:bg-transparent hover:text-primary_color hover:border-primary_color px-6 rounded-md">Register</NavLink>
+            <div className="navbar-end flex md:gap-4 gap-2">
+                {/* <NavLink to="/login" className="btn btn-sm btn-outline border-primary_color text-primary_color hover:bg-primary_color hover:text-white hover:border-primary_color md:px-6 lg:text-[14px] text-sm rounded-md">Log In</NavLink>
+                <NavLink to="/register" className="btn btn-sm bg-primary_color text-neutral-50 border-primary_color hover:bg-transparent hover:text-primary_color hover:border-primary_color md:px-6 lg:text-[14px] text-sm rounded-md">Register</NavLink> */}
+
+                {user && (
+                    <div className="flex md:gap-4 gap-2">
+                        <p>{user.email}</p>
+                        <button
+                            onClick={handleLogout} 
+                            className="btn btn-sm btn-outline border-primary_color text-primary_color hover:bg-primary_color hover:text-white hover:border-primary_color md:px-6 lg:text-[14px] text-sm rounded-md"
+                        >
+                            Logout
+                        </button>
+                    </div>
+                )}
+                {!user && (
+                    <div className="flex md:gap-4 gap-2">
+                        <NavLink
+                            to="/login"
+                            className="btn btn-sm btn-outline border-primary_color text-primary_color hover:bg-primary_color hover:text-white hover:border-primary_color md:px-6 lg:text-[14px] text-sm rounded-md"
+                        >
+                            Log In
+                        </NavLink>
+                        <NavLink
+                            to="/register"
+                            className="btn btn-sm bg-primary_color text-neutral-50 border-primary_color hover:bg-transparent hover:text-primary_color hover:border-primary_color md:px-6 lg:text-[14px] text-sm rounded-md"
+                        >
+                            Register
+                        </NavLink>
+                    </div>
+                )}
+
+
+
             </div>
+            {/* {authInfo && authInfo.name && <p>{authInfo.name}</p>} */}
         </div>
     );
 };

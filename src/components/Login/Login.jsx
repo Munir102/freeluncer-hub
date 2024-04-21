@@ -1,6 +1,6 @@
 
 import { getAuth, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
@@ -8,8 +8,12 @@ import auth from "../../Firebase/Firebase.config"; // Import Firebase configurat
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { GoogleAuthProvider } from "firebase/auth"; // Import GoogleAuthProvider
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
+
+    const { signInUser } = useContext(AuthContext);
+
     const [showPassword, setShowPassword] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
     const [registerError, setRegisterError] = useState('');
@@ -44,6 +48,14 @@ const Login = () => {
         e.preventDefault();
         const email = e.target.userEmail.value;
         const password = e.target.password.value;
+
+        signInUser(email, password)
+        .then(result =>{
+            console.log(result.user);
+        })
+        .catch( error =>{
+            console.error(error);
+        })
     
         signInWithEmailAndPassword(auth, email, password)
             .then(result => {
@@ -100,7 +112,7 @@ const Login = () => {
 
 
     return (
-        <div className="mx-auto w-[40%] flex flex-col  border border-neutral-100 p-6 shadow-md mb-16 gap-2 rounded-md">
+        <div className="mx-auto lg:w-[40%] md:w-[60%] w-[90%] flex flex-col  border border-neutral-100 p-6 shadow-md mb-16 gap-2 rounded-md">
             <div className="flex flex-col items-center text-center gap-6">
                 <h1 className="text-black_bg text-2xl font-bold">Sign in to your account</h1>
                 <Link to="" onClick={handleGoogleSignIn}>

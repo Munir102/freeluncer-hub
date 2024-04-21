@@ -2,41 +2,42 @@
 const Footer = () => {
     return (
         <footer className="p-10 bg-base-200 text-base-content">
-            <div className="footer max-w-7xl mx-auto flex">
-                <nav className="flex-grow">
+            <div className="footer max-w-7xl mx-auto md:py-10 py-4 md:p-0 px-4 grid lg:grid-cols-4 grid-cols-2 gap-6">
+                <nav>
                     <h6 className="footer-title">Services</h6> 
                     <a className="link link-hover">Branding</a>
                     <a className="link link-hover">Design</a>
                     <a className="link link-hover">Marketing</a>
                     <a className="link link-hover">Advertisement</a>
                 </nav> 
-                <nav className="flex-grow">
+                <nav>
                     <h6 className="footer-title">Company</h6> 
                     <a className="link link-hover">About us</a>
                     <a className="link link-hover">Contact</a>
                     <a className="link link-hover">Jobs</a>
                     <a className="link link-hover">Press kit</a>
                 </nav> 
-                <nav className="flex-grow">
+                <nav>
                     <h6 className="footer-title">Legal</h6> 
                     <a className="link link-hover">Terms of use</a>
                     <a className="link link-hover">Privacy policy</a>
                     <a className="link link-hover">Cookie policy</a>
                 </nav> 
-                <form>
+                <form className="col-span-2">
                     <h6 className="footer-title">Newsletter</h6> 
-                    <fieldset className="form-control w-80">
-                    <label className="label">
-                        <span className="label-text">Enter your email address</span>
-                    </label> 
-                    <div className="join">
-                        <input type="text" placeholder="username@site.com" className="input input-bordered join-item" /> 
-                        <button className="btn bg-primary_color text-neutral-50 join-item">Subscribe</button>
-                    </div>
+                    <fieldset className="form-control">
+                        <label className="label">
+                            <span className="label-text">Enter your email address</span>
+                        </label> 
+                        <div className="join flex flex-col md:flex-row">
+                            <input type="text" placeholder="username@site.com" className="input input-bordered join-item mb-2 md:mb-0 md:mr-2" /> 
+                            <button className="btn bg-primary_color text-neutral-50 join-item">Subscribe</button>
+                        </div>
                     </fieldset>
                 </form>
             </div>
         </footer>
+
     );
 };
 

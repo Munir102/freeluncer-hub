@@ -1,19 +1,21 @@
 
-    import { useState } from "react";
-    import { FcGoogle } from "react-icons/fc";
-    import { Link } from "react-router-dom";
-    import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-    import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
-    import auth from "../../Firebase/Firebase.config";
-    import { toast, ToastContainer } from 'react-toastify';
-    import 'react-toastify/dist/ReactToastify.css';
+import { useContext, useState } from "react";
+import { FcGoogle } from "react-icons/fc";
+import { Link } from "react-router-dom";
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
+import auth from "../../Firebase/Firebase.config";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { AuthContext } from "../../providers/AuthProvider";
 
-    const Register = () => {
+const Register = () => {
+    const { createUser } = useContext(AuthContext);
 
     const [showPassword, setShowPassword] = useState(false);
     const [termsChecked, setTermsChecked] = useState(false);
     const [registerError, setRegisterError] = useState('');
-    const [success, setSuccess] = useState('')
+    const [success, setSuccess] = useState('');
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -25,66 +27,54 @@
 
     const handleRegisterForm = async (e) => {
         e.preventDefault();
-    
+
         const fName = e.target.firstName.value;
         const lName = e.target.lastName.value;
         const email = e.target.userEmail.value;
         const password = e.target.password.value;
-    
+
         if (password.length < 6) {
             toast.error('Password should be 6 characters or longer.');
             return;
         }
-    
+
         try {
-            // Create the user with email and password
+            // Create user in Firebase
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
-    
-            setRegisterError('');
-            setSuccess('');
-    
-            updateProfile(user, {
-                displayName: `${fName} ${lName}`
-            })
 
-            .then(() => {
-                console.log('Profile updated successfully.');
-            })
-            .catch(error => {
-                console.error('Error updating profile:', error);
-                toast.error('An error occurred while updating profile.');
+            // Update user profile
+            await updateProfile(user, {
+                displayName: `${fName} ${lName}`
             });
 
-            // toast.success('User created successfully');
-            console.log("User created:", user);
+            // Send email verification
+            await sendEmailVerification(user);
             
-            // verify email address
-            sendEmailVerification(user)
-                .then(() =>{
-                    toast.success('Please check your email and verify your account.');
-                })
-                .catch(error => {
-                    console.error("Email verification error:", error);
-                    toast.error('An error occurred while sending the verification email.');
-                });
-    
+            e.target.reset();
+            setRegisterError('');
+            setSuccess('User created successfully.');
+
+            toast.success('Please check your email and verify your account.');
+
+            console.log("User created:", user);
         } catch (error) {
             console.error(error);
+            setRegisterError(error.message);
             toast.error(error.message);
         }
     };
-    
-
 
     return (
-        <div className="mx-auto w-[40%] flex flex-col border border-neutral-100 p-6 shadow-md mb-16 gap-2 rounded-md">
+        <div className="mx-auto lg:w-[40%] md:w-[60%] w-[90%] flex flex-col border border-neutral-100 p-6 shadow-md mb-16 gap-2 rounded-md">
             <div className="flex flex-col items-center text-center gap-6">
                 <h1 className="text-black_bg text-2xl font-bold">Create an account</h1>
-                <Link to="/"><a className="flex items-center justify-center text-center border border-neutral-300 py-2 px-4 gap-4 rounded-md">
-                    <span className="text-3xl"><FcGoogle /></span>
-                    <span>Register with Google</span>
-                </a></Link>
+                <Link to="/">
+                    <a className="flex items-center justify-center text-center border border-neutral-300 py-2 px-4 gap-4 rounded-md">
+                        <span className="text-3xl"><FcGoogle /></span>
+                        <span>Register with Google</span>
+                    </a>
+                </Link>
                 <p className="text-color_grey">- Or continue with -</p>
             </div>
 
@@ -140,13 +130,8 @@
                 </button>
             </form>
             <p className="mt-2">Already have an account? <span className="font-semibold"><Link to="/login">Login here</Link></span></p>
-            {/* {
-                registerError && <p className="text-red_text">{registerError}</p>
-            }
-            {
-                setSuccess && <p className="text-green_text">{success}</p>
-            } */}
 
+            {/* ToastContainer */}
             <ToastContainer />
         </div>
     );
