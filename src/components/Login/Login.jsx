@@ -3,7 +3,7 @@ import { getAuth, sendPasswordResetEmail, signInWithEmailAndPassword, signInWith
 import { useState, useRef, useContext } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../../Firebase/Firebase.config"; // Import Firebase configuration
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,6 +13,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 const Login = () => {
 
     const { signInUser } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const [showPassword, setShowPassword] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
@@ -52,6 +53,7 @@ const Login = () => {
         signInUser(email, password)
         .then(result =>{
             console.log(result.user);
+            navigate('/');
         })
         .catch( error =>{
             console.error(error);

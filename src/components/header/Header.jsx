@@ -93,8 +93,6 @@ const Header = () => {
                     </div>
                 )}
 
-
-
             </div>
             {/* {authInfo && authInfo.name && <p>{authInfo.name}</p>} */}
         </div>
