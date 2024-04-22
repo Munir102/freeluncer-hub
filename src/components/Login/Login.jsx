@@ -32,6 +32,7 @@ const Login = () => {
             const loggedInUser = result.user;
             // console.log(loggedInUser);
             setUser(loggedInUser);
+            navigate('/');
         }).catch((error) => {
             console.log('error', error.message);
         });
@@ -172,7 +173,7 @@ const Login = () => {
 
                 <button 
                     type="submit" 
-                    className={`btn bg-primary_color text-lg text-neutral-50`}
+                    className={`btn bg-primary_color md:text-lg text-md text-neutral-50`}
                 >
                     Log In
                 </button>

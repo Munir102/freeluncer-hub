@@ -15,11 +15,23 @@ const Header = () => {
 
     const NavLinks = (
         <>
-            <li><NavLink to="/">Home</NavLink></li>
-            <li><NavLink to="/listedBook">Freeluncer</NavLink></li>
-            <li><NavLink to="/pagesToRead">Project</NavLink></li>
-            <li><NavLink to="/aboutUs">About Us</NavLink></li>
-            <li><NavLink to="/contact">Contact</NavLink></li>
+            {user && (
+                <>
+                    <li><NavLink to="/">Home</NavLink></li>
+                    <li><NavLink to="/listedBook">Freeluncer</NavLink></li>
+                    <li><NavLink to="/pagesToRead">Project</NavLink></li>
+                    <li><NavLink to="/aboutUs">About Us</NavLink></li>
+                    <li><NavLink to="/contact">Contact</NavLink></li>
+                </>
+            )}
+    
+            {!user && window.location.pathname !== '/login' && window.location.pathname !== '/register' && (
+                <>
+                    <li><NavLink to="/">Home</NavLink></li>
+                    <li><NavLink to="/aboutUs">About Us</NavLink></li>
+                    <li><NavLink to="/contact">Contact</NavLink></li>
+                </>
+            )}
         </>
     );
 
@@ -27,7 +39,7 @@ const Header = () => {
         <div className="navbar bg-base-100 md:p-0 p-4 md:my-4 my-2">
             <div className="navbar-start">
                 <div className="dropdown">
-                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                    <div tabIndex={0} role="button" className="btn btn-ghost p-0 lg:hidden">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-5 w-5"
@@ -52,7 +64,7 @@ const Header = () => {
                         </div>
                     </ul>
                 </div>
-                <Link to="/" className="md:text-2xl text-base font-bold">Freeluncer <span className="text-primary_color">Hub</span></Link>
+                <Link to="/" className="md:text-2xl text-base font-bold ml-2">Freeluncer <span className="text-primary_color">Hub</span></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -66,11 +78,12 @@ const Header = () => {
                 <NavLink to="/register" className="btn btn-sm bg-primary_color text-neutral-50 border-primary_color hover:bg-transparent hover:text-primary_color hover:border-primary_color md:px-6 lg:text-[14px] text-sm rounded-md">Register</NavLink> */}
 
                 {user && (
-                    <div className="flex md:gap-4 gap-2">
-                        <p>{user.displayName}</p>
+                    <div className="flex items-center md:gap-4 gap-2">
+                        {/* <p>{user.displayName}</p> */}
+                        <p className="md:text-base text-xs">{window.innerWidth <= 768 ? user.displayName.slice(0, 6) : user.displayName}</p>
                         <button
                             onClick={handleLogout} 
-                            className="btn btn-sm btn-outline border-primary_color text-primary_color hover:bg-primary_color hover:text-white hover:border-primary_color md:px-6 lg:text-[14px] text-sm rounded-md"
+                            className="btn btn-sm btn-outline border-primary_color text-primary_color hover:bg-primary_color hover:text-white hover:border-primary_color md:px-6 lg:text-[14px] text-xs rounded-md"
                         >
                             Logout
                         </button>
@@ -80,16 +93,16 @@ const Header = () => {
                     <div className="flex md:gap-4 gap-2">
                         <NavLink
                             to="/login"
-                            className="btn btn-sm btn-outline border-primary_color text-primary_color hover:bg-primary_color hover:text-white hover:border-primary_color md:px-6 lg:text-[14px] text-sm rounded-md"
+                            className="btn btn-sm btn-outline border-primary_color text-primary_color hover:bg-primary_color hover:text-white hover:border-primary_color md:px-6 lg:text-sm text-xs rounded-md"
                         >
                             Log In
                         </NavLink>
-                        <NavLink
+                        {/* <NavLink
                             to="/register"
-                            className="btn btn-sm bg-primary_color text-neutral-50 border-primary_color hover:bg-transparent hover:text-primary_color hover:border-primary_color md:px-6 lg:text-[14px] text-sm rounded-md"
+                            className="btn btn-sm bg-primary_color text-neutral-50 border-primary_color hover:bg-transparent hover:text-primary_color hover:border-primary_color md:px-6 lg:text-sm text-xs rounded-md"
                         >
                             Register
-                        </NavLink>
+                        </NavLink> */}
                     </div>
                 )}
 
