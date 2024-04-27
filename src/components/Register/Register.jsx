@@ -1,5 +1,4 @@
-
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
@@ -10,10 +9,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Register = () => {
-
     useEffect(() => {
         document.title = 'FH - Registration';
-    })
+    });
 
     const { createUser } = useContext(AuthContext);
 
@@ -21,6 +19,7 @@ const Register = () => {
     const [termsChecked, setTermsChecked] = useState(false);
     const [registerError, setRegisterError] = useState('');
     const [success, setSuccess] = useState('');
+    const [userRole, setUserRole] = useState('select');
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -30,6 +29,15 @@ const Register = () => {
         setTermsChecked(!termsChecked);
     };
 
+    const handleRoleChange = (e) => {
+        setUserRole(e.target.value);
+    };
+
+    const validateEmail = (email) => {
+        const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+        return gmailRegex.test(email);
+    };
+
     const handleRegisterForm = async (e) => {
         e.preventDefault();
 
@@ -37,9 +45,15 @@ const Register = () => {
         const lName = e.target.lastName.value;
         const email = e.target.userEmail.value;
         const password = e.target.password.value;
+        const userRole = e.target.userRole.value;
 
         if (password.length < 6) {
             toast.error('Password should be 6 characters or longer.');
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            toast.error('Please enter a valid Gmail address.');
             return;
         }
 
@@ -74,14 +88,14 @@ const Register = () => {
     return (
         <div className="mx-auto lg:w-[40%] md:w-[60%] w-[90%] flex flex-col border border-neutral-100 p-6 shadow-md mb-16 gap-2 rounded-md">
             <div className="flex flex-col items-center text-center gap-6">
-                <h1 className="text-black_bg text-2xl font-bold">Create an account</h1>
-                <Link to="/">
+                <h1 className="text-black_bg text-2xl font-bold border-y-2 border-border_color p-2 mb-4">Create an account</h1>
+                {/* <Link to="/">
                     <a className="flex items-center justify-center text-center border border-neutral-300 py-2 px-4 gap-4 rounded-md">
                         <span className="text-3xl"><FcGoogle /></span>
                         <span>Register with Google</span>
                     </a>
                 </Link>
-                <p className="text-color_grey">- Or continue with -</p>
+                <p className="text-color_grey">- Or continue with -</p> */}
             </div>
 
             {/* Form start */}
@@ -115,6 +129,19 @@ const Register = () => {
                         {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
                     </button>
                 </div>
+                <label htmlFor="userRole">Select Role</label>
+                <select
+                    id="userRole"
+                    name="userRole"
+                    value={userRole}
+                    onChange={handleRoleChange}
+                    className="p-2 border border-neutral-300 rounded-md"
+                    required
+                >
+                    <option value="select" disabled>Select One</option>
+                    <option value="seller">Seller</option>
+                    <option value="buyer">Buyer</option>
+                </select>
                 <label htmlFor="termsCheckbox" className="flex items-center">
                     <input 
                         type="checkbox" 

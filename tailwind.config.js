@@ -12,6 +12,7 @@ export default {
       'color_grey': '#9ca3af',
       'green_text': '#22c55e',
       'red_text': '#dc2626',
+      'border_color': '#f1f5f9',
     },
   },
   plugins: [require("daisyui")],
