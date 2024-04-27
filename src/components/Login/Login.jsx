@@ -1,16 +1,20 @@
 
 import { getAuth, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { useState, useRef, useContext } from "react";
+import { useState, useRef, useContext, useEffect } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
-import auth from "../../Firebase/Firebase.config"; // Import Firebase configuration
+import auth from "../../Firebase/Firebase.config"; 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { GoogleAuthProvider } from "firebase/auth"; // Import GoogleAuthProvider
+import { GoogleAuthProvider } from "firebase/auth";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
+
+    useEffect(() => {
+        document.title = 'FH - Login';
+    })
 
     const { signInUser } = useContext(AuthContext);
     const navigate = useNavigate();

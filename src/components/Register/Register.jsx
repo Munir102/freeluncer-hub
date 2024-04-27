@@ -1,5 +1,5 @@
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
@@ -10,6 +10,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Register = () => {
+
+    useEffect(() => {
+        document.title = 'FH - Registration';
+    })
+
     const { createUser } = useContext(AuthContext);
 
     const [showPassword, setShowPassword] = useState(false);
