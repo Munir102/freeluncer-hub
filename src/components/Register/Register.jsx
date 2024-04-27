@@ -47,6 +47,13 @@ const Register = () => {
         const password = e.target.password.value;
         const userRole = e.target.userRole.value;
 
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+
+        if (!passwordRegex.test(password)) {
+            toast.error('Password should be at least 6 characters long and contain at least one uppercase letter and one lowercase letter.');
+            return;
+        }
+
         if (password.length < 6) {
             toast.error('Password should be 6 characters or longer.');
             return;
@@ -77,6 +84,7 @@ const Register = () => {
             toast.success('Please check your email and verify your account.');
 
             console.log("User created:", user);
+            
         } catch (error) {
             console.error(error);
             // setRegisterError(error.message);

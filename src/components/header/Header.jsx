@@ -5,11 +5,10 @@ import { AuthContext } from "../../providers/AuthProvider";
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
     const location = useLocation();
-    console.log(user);
 
     const handleLogout = () => {
         logOut()
-            .then(() => console.log('User login successfully'))
+            .then(() => console.log('User logged out successfully'))
             .catch(error => console.error(error))
     }
 
