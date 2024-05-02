@@ -35,7 +35,7 @@ const Header = () => {
     );
 
     return (
-        <div className="navbar bg-base-100 md:p-0 p-4 md:my-4 my-2">
+        <div className="navbar md:p-0 p-4 md:my-4 my-2">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost p-0 lg:hidden">
@@ -78,7 +78,7 @@ const Header = () => {
                         <p className="md:text-base text-xs">{window.innerWidth <= 768 ? user.displayName.slice(0, 6) : user.displayName}</p>
                         <button
                             onClick={handleLogout}
-                            className="btn btn-sm btn-outline border-primary_color text-primary_color hover:bg-primary_color hover:text-white hover:border-primary_color md:px-6 lg:text-[14px] text-xs rounded-md"
+                            className="btn md:btn-md btn-sm btn-outline border-primary_color text-primary_color hover:bg-primary_color hover:text-white hover:border-primary_color md:px-6 md:text-[16px] text-xs rounded-md"
                         >
                             Logout
                         </button>
@@ -88,7 +88,7 @@ const Header = () => {
                     <div className="flex md:gap-4 gap-2">
                         <NavLink
                             to="/login"
-                            className="btn btn-sm btn-outline border-primary_color text-primary_color hover:bg-primary_color hover:text-white hover:border-primary_color md:px-6 lg:text-sm text-xs rounded-md"
+                            className="btn md:btn-md btn-sm btn-outline border-primary_color text-primary_color hover:bg-primary_color hover:text-white hover:border-primary_color md:px-6 md:text-[16px] text-xs rounded-md"
                         >
                             Log In
                         </NavLink>
