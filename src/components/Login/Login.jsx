@@ -13,7 +13,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 const Login = () => {
 
     useEffect(() => {
-        document.title = 'FH - Login';
+        document.title = 'Task Titans - Login';
     })
 
     const { signInUser } = useContext(AuthContext);
@@ -119,7 +119,7 @@ const Login = () => {
 
 
     return (
-        <div className="mx-auto lg:w-[40%] md:w-[60%] w-[90%] flex flex-col  border border-neutral-100 p-6 shadow-md mb-16 gap-2 rounded-md">
+        <div className="mx-auto font-poppins lg:w-[40%] md:w-[60%] w-[90%] flex flex-col  border border-neutral-100 p-6 shadow-md mb-16 gap-2 rounded-md">
             <div className="flex flex-col items-center text-center gap-6">
                 <h1 className="text-black_bg md:text-2xl text-lg font-bold border-y-2 border-border_color p-2">Sign in to your account</h1>
                 <Link to="" onClick={handleGoogleSignIn}>

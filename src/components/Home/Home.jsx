@@ -5,7 +5,7 @@ import Bannner from "../Bannner/Bannner";
 const Home = () => {
 
     useEffect(() => {
-        document.title = 'FH - Home';
+        document.title = 'Task Titans - Home';
     })
 
     return (

@@ -10,7 +10,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 
 const Register = () => {
     useEffect(() => {
-        document.title = 'FH - Registration';
+        document.title = 'Task Titans - Registration';
     });
 
     const { createUser } = useContext(AuthContext);
@@ -94,7 +94,7 @@ const Register = () => {
     };
 
     return (
-        <div className="mx-auto lg:w-[40%] md:w-[60%] w-[90%] flex flex-col border border-neutral-100 p-6 shadow-md mb-16 gap-2 rounded-md">
+        <div className="mx-auto font-poppins lg:w-[40%] md:w-[60%] w-[90%] flex flex-col border border-neutral-100 p-6 shadow-md mb-16 gap-2 rounded-md">
             <div className="flex flex-col items-center text-center gap-6">
                 <h1 className="text-black_bg md:text-2xl text-lg font-bold border-y-2 border-border_color p-2 mb-4">Create an account</h1>
                 {/* <Link to="/">
