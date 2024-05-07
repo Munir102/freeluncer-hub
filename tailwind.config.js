@@ -13,9 +13,7 @@ export default {
       'white_color': '#fffff',
       'black_bg': '#0f172a',
       'color_grey': '#9ca3af',
-      'green_text': '#22c55e',
-      'red_text': '#dc2626',
-      'border_color': '#f1f5f9',
+      'green_text': '#22c55e'
     },
     extend: {
       fontFamily: {

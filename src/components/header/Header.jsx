@@ -58,16 +58,16 @@ const Header = () => {
                         tabIndex={0}
                         className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
                     >
-                        <div className="text-small_text font-poppins text-base">
+                        <div className="text-p_text font-poppins text-base">
                             {NavLinks}
                         </div>
                     </ul>
                 </div>
-                <Link to="/" className="md:text-2xl text-base font-bold ml-2">Task <span className="text-primary_color">Titans</span></Link>
+                <Link to="/" className="md:text-2xl text-xl font-bold ml-2">Task <span className="text-primary_color">Titans</span></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                    <div className="flex text-small_text font-poppins text-base md:pr-2 gap-1">
+                    <div className="flex text-p_text font-poppins text-base md:pr-2 gap-1">
                         {NavLinks}
                     </div>
                 </ul>

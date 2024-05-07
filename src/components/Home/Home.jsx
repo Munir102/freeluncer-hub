@@ -1,5 +1,7 @@
 import { useEffect } from "react";
-import Bannner from "../Bannner/Bannner";
+import Bannner from "../../components/Bannner/Bannner";
+import Countdown from "../Countdown/Countdown";
+import Chooseprovider from "../chooseProvider/Chooseprovider";
 
 
 const Home = () => {
@@ -11,6 +13,8 @@ const Home = () => {
     return (
         <div>
             <Bannner></Bannner>
+            <Countdown></Countdown>
+            <Chooseprovider></Chooseprovider>
         </div>
     );
 };
