@@ -6,7 +6,7 @@ import img2 from "../../assets/Programming-pana.png";
 const Chooseprovider = () => {
     return (
         <div className="grid md:grid-cols-2 font-poppins md:mt-24 mt-4">
-            <div className="col-span-1 bg-primary_color p-10 grid grid-cols-3 justify-center items-center gap-6">
+            <div className="col-span-1 bg-primary_color p-10 grid grid-cols-3 justify-center items-center gap-8">
                 <div className="col-span-2 flex flex-col gap-6 text-neutral-50">
                     <h1 className="md:text-4xl text-2xl font-semibold">Need a Project?</h1>
                     <p className="md:text-base text-sm">Discover the ideal project tailored to your budget from our innovative community of creators.</p>

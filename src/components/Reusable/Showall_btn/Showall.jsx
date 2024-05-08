@@ -5,7 +5,7 @@ const Showall = ({ onClick }) => {
         <div className="font-poppins">
             <button 
                 onClick={onClick}
-                className="btn bg-primary_color text-neutral-50 text-lg font-semibold px-7 shadow-xl transform hover:shadow-md transition duration-300">
+                className="btn bg-primary_color text-neutral-50 md:text-lg text-base font-semibold px-7 shadow-xl transform hover:shadow-md transition duration-300">
                 Show all
             </button>
         </div>

@@ -15,16 +15,31 @@ const SearchBtn = () => {
 
 
     return (
-        <div>
-            <form className='border rounded-full border-primary_color md:p-2 p-2 md:w-4/5 w-full flex items-center md:my-8 my-2 shadow-lg' onSubmit={handleSubmit}>
-                    <select value={searchType} onChange={handleSearchTypeChange} className='md:px-4 px-1 py-2 rounded-l-full border-primary_color bg-white text-primary_color focus:outline-none mb-2 md:mb-0 md:text-base text-sm' required>
-                        <option value="" disabled>Select</option>card relative w-96 bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition duration-300 transform hover:-translate-y-1 hover:scale-105
-                        <option value="Projects">Projects</option>
-                        <option value="Freelancers">Freelancers</option>
-                    </select>
-                    <input type="text" placeholder="Keyword" name="keyword" className='outline-none md:pl-6 pl-0 bg-white border-l-0 border-primary_color border-solid rounded-r-full flex-1 md:text-base text-sm' />
-                    <button type="submit" className="btn md:btn-lg btn-md bg-primary_color text-neutral-50 rounded-full md:px-10 md:py-2 md:mr-2 mr-0">Search</button>
-                </form>
+        <div className="md:p-0 p-4">
+            <form className='border md:rounded-full rounded-lg border-primary_color md:p-2 p-2 md:w-4/5 w-full flex flex-col md:flex-row items-center md:my-8 my-2 shadow-lg' onSubmit={handleSubmit}>
+                <select 
+                    value={searchType} 
+                    onChange={handleSearchTypeChange} 
+                    className='md:px-4 px-3 py-2 rounded-l-full border-primary_color bg-white text-primary_color focus:outline-none mb-2 md:mb-0 md:text-base text-sm w-full md:w-auto'
+                    required
+                >
+                    <option value="" disabled>Select</option>
+                    <option value="Projects">Projects</option>
+                    <option value="Freelancers">Freelancers</option>
+                </select>
+                <input 
+                    type="text" 
+                    placeholder="Keyword" 
+                    name="keyword" 
+                    className='outline-none md:pl-6 pl-3 bg-white border-l-0 border-primary_color border-solid rounded-r-full flex-1 md:text-base text-sm md:ml-0 ml-2 mb-2 md:mb-0 w-full md:w-auto'
+                />
+                <button 
+                    type="submit" 
+                    className="btn md:btn-lg btn-md bg-primary_color text-neutral-50 md:text-lg text-base rounded-full md:px-6 px-20 py-2"
+                >
+                    Search
+                </button>
+            </form>
         </div>
     );
 };
