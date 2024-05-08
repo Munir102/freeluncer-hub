@@ -3,6 +3,7 @@ import Bannner from "../../components/Bannner/Bannner";
 import Countdown from "../Countdown/Countdown";
 import Chooseprovider from "../chooseProvider/Chooseprovider";
 import GetProject from "../Get_project/GetProject";
+import Subcribe from "../Subscribe/Subcribe";
 
 
 const Home = () => {
@@ -13,10 +14,18 @@ const Home = () => {
 
     return (
         <div>
-            <Bannner></Bannner>
-            <Countdown></Countdown>
+            <div className="md:max-w-7xl mx-auto">
+                <Bannner></Bannner>
+                <Countdown></Countdown>
+            </div>
+            
             <Chooseprovider></Chooseprovider>
-            <GetProject></GetProject>
+
+            <div className="md:max-w-7xl mx-auto">
+                <GetProject></GetProject>
+            </div>
+
+            <Subcribe></Subcribe>
         </div>
     );
 };

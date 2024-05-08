@@ -20,7 +20,7 @@ const Bannner = () => {
                     <p className='text-p_text font-medium md:text-base text-sm'>TRUSED BY OVER 2M+ USERS</p>
                 </div>
                 <h1 className='md:text-6xl text-4xl font-bold md:leading-[70px] leading-[50px]'>Get the Perfect <br /><span className='text-primary_color'>Developers & Projects</span></h1>
-                <p className='text-p_text font-medium md:text-base text-sm'>With the Bangladesh #1 Developers marketplace</p>
+                <p className='text-p_text font-medium md:text-base text-sm'>With the Bangladeshi #1 Developers marketplace</p>
                 <SearchBtn></SearchBtn>
             </div>
             <div className=''>
