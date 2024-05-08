@@ -29,7 +29,7 @@ const Chooseprovider = () => {
                     </div>
                 </div>
                 <div className="col-span-1">
-                    <img src={img1} alt="" className=""/>
+                    <img src={img1} alt="" className="rounded-full"/>
                 </div>
             </div>
         </div>

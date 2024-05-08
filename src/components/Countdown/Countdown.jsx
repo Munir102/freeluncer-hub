@@ -13,7 +13,7 @@ const Countdown = () => {
     ];
 
     return (
-        <div className="grid md:grid-cols-3 grid-cols-1 md:gap-12 gap-4 font-poppins text-primary_font md:mt-20 mt-4 p-2">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-12 gap-4 font-poppins text-primary_font md:mt-20 mt-4 p-2">
             {cardsData.map((card, index) => (
                 <div key={index} className="flex flex-col items-center">
                     <CountDownCard number={card.number} title={card.title} icon={card.icon} />
