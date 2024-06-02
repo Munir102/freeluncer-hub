@@ -5,6 +5,7 @@ import Chooseprovider from "../chooseProvider/Chooseprovider";
 import GetProject from "../Get_project/GetProject";
 import Subcribe from "../Subscribe/Subcribe";
 import Hired_developer from "../Hired_developer/Hired_developer";
+import TopReview from "../TopReview/TopReview";
 
 
 const Home = () => {
@@ -30,6 +31,10 @@ const Home = () => {
             
             <div className="md:max-w-7xl mx-auto">
                 <Hired_developer></Hired_developer>
+            </div>
+
+            <div className="md:max-w-7xl mx-auto">
+                <TopReview></TopReview>
             </div>
         </div>
     );

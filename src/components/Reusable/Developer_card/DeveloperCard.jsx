@@ -1,6 +1,7 @@
 
 import PropTypes from 'prop-types';
 import { FaLocationDot } from "react-icons/fa6";
+import { FaStarHalfAlt } from "react-icons/fa";
 
 const DeveloperCard = ({ name, designation, location, rating, workingType, active, image }) => {
     return (
@@ -9,12 +10,16 @@ const DeveloperCard = ({ name, designation, location, rating, workingType, activ
                 <div className={`avatar w-[180px] h-[180px] border border-green_text rounded-full ${active ? 'online' : 'offline'}`}>
                     <img src={image} alt={name} className="w-full h-full rounded-full object-cover shadow-lg transform hover:shadow-md transition duration-300"/>
                 </div>
+
             </div>
             
             <div className="card-body p-4 text-center">
                 <h1 className="text-black_bg text-2xl font-bold mb-2">{name}</h1>
                 <h2 className="text-xl font-semibold text-p_text mb-2">{designation}</h2>
-                <h2 className="text-xl text-gray-700 mb-2">{rating }</h2>
+                <div className="flex justify-center gap-2">
+                    <FaStarHalfAlt className="text-[#facc15] mt-1 text-lg"/>
+                    <h2 className="text-xl text-gray-700 mb-2">{rating }</h2>
+                </div>
                 <div className="flex justify-center gap-2 pb-2 text-p_text">
                     <FaLocationDot className=""/>
                     <h1 className="">{location}</h1>

@@ -80,7 +80,7 @@ const Header = () => {
                             onClick={handleLogout}
                             className="btn md:btn-md btn-sm btn-outline border-primary_color text-primary_color hover:bg-primary_color hover:text-white hover:border-primary_color md:px-6 md:text-[16px] text-xs rounded-md"
                         >
-                            Logout
+                            Log out
                         </button>
                     </div>
                 )}
