@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import Bannner from "../../components/Bannner/Bannner";
-import Countdown from "../Countdown/Countdown";
-import Chooseprovider from "../chooseProvider/Chooseprovider";
-import GetProject from "../Get_project/GetProject";
-import Subcribe from "../Subscribe/Subcribe";
-import Hired_developer from "../Hired_developer/Hired_developer";
-import TopReview from "../TopReview/TopReview";
+import Countdown from "../../components/Countdown/Countdown";
+import Chooseprovider from "../../components/chooseProvider/Chooseprovider";
+import GetProject from "../../components/Get_project/GetProject";
+import Subcribe from "../../components/Subscribe/Subcribe";
+import Hired_developer from "../../components/Hired_developer/Hired_developer";
+import TopReview from "../../components/TopReview/TopReview";
 
 
 const Home = () => {

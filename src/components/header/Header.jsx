@@ -17,8 +17,8 @@ const Header = () => {
             {user && (
                 <>
                     <li><NavLink to="/">Home</NavLink></li>
-                    <li><NavLink to="/listedBook">Freeluncer</NavLink></li>
-                    <li><NavLink to="/pagesToRead">Project</NavLink></li>
+                    <li><NavLink to="/post">Post</NavLink></li>
+                    <li><NavLink to="/hire">Hire</NavLink></li>
                     <li><NavLink to="/aboutUs">About Us</NavLink></li>
                     <li><NavLink to="/contact">Contact</NavLink></li>
                 </>

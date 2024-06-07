@@ -1,8 +1,8 @@
 import { useState } from "react";
-import projectImg from "../../../assets/task_titans.png";
+// import projectImg from "../../../assets/task_titans.png";
 import PropTypes from 'prop-types';
 
-const ProjectCard = ({ project, title, numOfDev, developers }) => {
+const ProjectCard = ({ project, title, numOfDev, developers, image }) => {
 
     const [isHovered, setIsHovered] = useState(false);
 
@@ -14,9 +14,9 @@ const ProjectCard = ({ project, title, numOfDev, developers }) => {
         >
             <div className="p-1">
                 <img 
-                    src={projectImg} 
+                    src={image} 
                     alt="" 
-                    className={`transform transition duration-300 ${isHovered ? "transform scale-110" : ""}`}
+                    className={`transform transition duration-300 h-56 w-full ${isHovered ? "transform scale-110" : ""}`}
                 />
             </div>
             <div className="card-body border-t border-primary_color grid grid-cols-2 text-center">
